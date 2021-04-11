@@ -47,7 +47,6 @@ function sendServerCommand(cmd){
     if(server_jar){
         console.log("GUI Issuing Command: \'" + cmd + "\'")
         server_jar.stdin.write(cmd + "\r")
-        //server_jar.stdin.end()
     }
 }
 
