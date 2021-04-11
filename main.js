@@ -10,8 +10,7 @@ function createWindow () {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
-    },
-    icon: __dirname + 'gui\ icon.png'
+    }
   })
 
   win.loadFile('index.html')
