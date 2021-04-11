@@ -1,6 +1,7 @@
 var child = require('child_process')
 window.$ = window.jquery = require('jquery')
 
+var java_path = 'java'
 var server_path = 'C:\\Users\\derek\\Documents\\Minecraft\\Server\\Test\ Spigot\ Server'
 var jar_name = 'spigot.jar'
 var java_min = '-Xms8G'
@@ -11,7 +12,7 @@ var server_jar = null
 function startServer(){
     console.log('GUI Iussuing Start Server...')
     server_jar = child.spawn(
-        'java',
+        java_path,
         [java_min, java_max, '-XX:+UseG1GC', '-jar', jar_name, 'nogui'] ,
         { cwd: server_path }
         )
