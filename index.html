@@ -10,12 +10,37 @@
         <div id="console">
             <div id="console-output">
                 <div id="console-output-line"></div>
-                <script src="./test.js"></script>
+                <script src="./mcserver.js"></script>
             </div>
             <input id="console-input" type="text" placeholder="Enter server command">
         </div>
-        <button type="button" onclick="startServer()">Start Server</button>
-        <button type="button" onclick="stopServer()">Stop Server</button> 
+
+        <div id="server-options">
+            <ul>
+                Choose server jar
+                <input id="server_jar" type="file"/>
+            </ul>
+            <ul>
+                Min RAM
+                <input type="range" min="0" max="100" step="25" list="ticks">
+            </ul>
+            <ul>
+                Max RAM
+                <input type="range" min="0" max="100" step="25" list="ticks">
+            </ul>
+            <ul>
+                <button type="button" onclick="startServer()">Start Server</button>
+                <button type="button" onclick="stopServer()">Stop Server</button>
+            </ul>
+        </div>
+        
+        <datalist id="ticks">
+            <option>0</option>
+            <option>25</option>
+            <option>50</option>
+            <option>75</option>
+            <option>100</option>
+        </datalist>
     </body>
 
 </html>
