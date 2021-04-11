@@ -7,27 +7,59 @@
         <link rel="stylesheet" href="css/overview.css" />
     </head>
     <body style="background: rgb(255, 255, 255);">
-        <div id="console">
-            <div id="console-output">
-                <div id="console-output-line"></div>
-                <script src="./js/mcserver.js"></script>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Overview')">Overview</button>
+            <button class="tablinks" onclick="openTab(event, 'Console')">Console</button>
+            <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
+            <button class="tablinks" onclick="openTab(event, 'Scheduler')">Scheduler</button>
+            <button class="tablinks" onclick="openTab(event, 'Backups')">Backups</button>
+            <button class="tablinks" onclick="openTab(event, 'Players')">Players</button>
+            <button class="tablinks" onclick="openTab(event, 'Plugins')">Plugins</button>
+          </div>
+          
+          <div id="Overview" class="tabcontent">
+            <h3>Overview</h3>
+            <p>console, playerlist, simple server commands, server resource monitor</p>
+          </div>
+          
+          <div id="Console" class="tabcontent">
+            <div id="console">
+                <div id="console-output">
+                    <div id="console-output-line"></div>
+                    <script src="./js/mcserver.js"></script>
+                </div>
+                <input id="console-input" type="text" placeholder="Enter server command">
             </div>
-            <input id="console-input" type="text" placeholder="Enter server command">
-        </div>
+          </div>
+          
+          <div id="Settings" class="tabcontent">
+            <h3>Settings</h3>
+            <p>server jar location, min-max ram java, custom arguments, java version, launch button</p>
+          </div>
+      
+          <div id="Scheduler" class="tabcontent">
+            <h3>Scheduler</h3>
+            <p>run tasks like backup/broadcasts/custom</p>
+          </div>
+          
+          <div id="Backups" class="tabcontent">
+            <h3>Backups</h3>
+            <p>backups w/ restore feature</p>
+          </div>
+      
+          <div id="Players" class="tabcontent">
+            <h3>Players</h3>
+            <p>get custom info from player</p>
+          </div>
+      
+          <div id="Plugins" class="tabcontent">
+            <h3>Plugins</h3>
+            <p>read plugins folder</p> 
+          </div>
+        
 
         <div id="server-options">
-            <ul>
-                Choose server jar
-                <input id="server_jar" type="file"/>
-            </ul>
-            <ul>
-                Min RAM
-                <input type="range" min="0" max="100" step="25" list="ticks">
-            </ul>
-            <ul>
-                Max RAM
-                <input type="range" min="0" max="100" step="25" list="ticks">
-            </ul>
+            
             <ul>
                 <button type="button" onclick="startServer()">Start Server</button>
                 <button type="button" onclick="stopServer()">Stop Server</button>
@@ -41,6 +73,7 @@
             <option>75</option>
             <option>100</option>
         </datalist>
+        <script src="./js/overview.js"></script>
     </body>
 
 </html>
