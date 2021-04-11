@@ -30,7 +30,6 @@ function startServer(){
 
 function stopServer(){
     if(server_jar){
-        console.log('GUI Iussuing Stop Server...')
         sendServerCommand("stop")
     }
 }
