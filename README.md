@@ -18,4 +18,6 @@ App Feature list (not minecraft specific)
 - detect if java is installed, and which versions are
 - version checker and update button to update the app
 - make design/css responsive (different window sizes that auto changes)
-- 
+- option to pause auto-scroll on console
+- option to only show [errors] in console
+- dark theme/light theme
