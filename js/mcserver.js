@@ -26,6 +26,7 @@ function startServer(){
         var serverOutput = data.toString()
         updateServerConsole(serverOutput)
     })
+    console.log(server_jar.pid)
 }
 
 function stopServer(){
@@ -42,6 +43,13 @@ $(document).on("keypress", "#console-input", function(e){
         }
     }
 });
+
+function submitConsoleInput(){
+    if(server_jar){
+        sendServerCommand($('#console-input').val())
+        $('#console-input').val("")
+    }
+}
 
 function sendServerCommand(cmd){
     if(server_jar){

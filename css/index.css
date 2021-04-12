@@ -1,0 +1,108 @@
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+  
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+  
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+  
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+  
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  border: 1px solid #ccc;
+  border-top: none;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  fill: 1;
+  right: 0;
+  background-image: url('img/mc-light-stone.png');
+}
+
+#console{
+  display: block;
+  flex-direction: column;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: url('img/mc-dark-stone.png');
+  text-align: left;
+}
+
+#console-output {
+  color: white;
+  top: 10px;
+  height: 90%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+#console-bottom{
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  position: relative;
+  height: 6%;
+  width: 100%;
+}
+
+#console-input {
+  flex:1;
+  flex-grow: 9;
+  overflow: auto;
+}
+#console-submit-button {
+  flex:2;
+  flex-grow: 1;
+}
+
+
+.page {
+  flex:2;
+  margin: 0;
+  position: relative;
+}
+
+body{
+  margin: 0;
+}
+
+.header{
+  flex:1;
+  position: relative;
+  top: 0;
+  width: auto;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.body{
+  background-image: url('img/mc-dark-stone.png');
+}
+
+  

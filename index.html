@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>qServerGUI [WIP]</title>
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+        <link rel="stylesheet" href="css/index.css" />
+    </head>
+    <body class="body container">
+      <div class="header tab">
+        <button class="tablinks" onclick="openTab(event, 'Overview')">Overview</button>
+        <button class="tablinks" onclick="openTab(event, 'Console')">Console</button>
+        <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
+        <button class="tablinks" onclick="openTab(event, 'Scheduler')">Scheduler</button>
+        <button class="tablinks" onclick="openTab(event, 'Backups')">Backups</button>
+        <button class="tablinks" onclick="openTab(event, 'Players')">Players</button>
+        <button class="tablinks" onclick="openTab(event, 'Plugins')">Plugins</button>
+      </div>
+      <div class="page">
+        <div id="Overview" class="tabcontent" style="display:block">
+          <div class="pagecontents">
+            <h3>Overview</h3>
+            <p>console, playerlist, simple server commands, server resource monitor</p>
+            <ul>
+              <button type="button" onclick="startServer()">Start Server</button>
+              <button type="button" onclick="stopServer()">Stop Server</button>
+            </ul>
+          </div>
+          
+        </div>
+
+        <div id="Console" class="tabcontent">
+          <div id="console">
+              <div id="console-output" class="flex-fill">
+                  <div id="console-output-line"></div>
+                  <script src="./js/mcserver.js"></script>
+              </div>
+              <div id="console-bottom">
+                <input id="console-input" type="text" placeholder="Send server command">
+                <button id="console-submit-button" type="button" onclick="submitConsoleInput()">Send</button>
+              </div>
+          </div>
+        </div>
+        
+        <div id="Settings" class="tabcontent">
+          <h3>Settings</h3>
+          <p>server jar location, min-max ram java, custom arguments, java version, launch button</p>
+        </div>
+    
+        <div id="Scheduler" class="tabcontent">
+          <h3>Scheduler</h3>
+          <p>run tasks like backup/broadcasts/custom</p>
+        </div>
+        
+        <div id="Backups" class="tabcontent">
+          <h3>Backups</h3>
+          <p>backups w/ restore feature</p>
+        </div>
+    
+        <div id="Players" class="tabcontent">
+          <h3>Players</h3>
+          <p>get custom info from player</p>
+        </div>
+    
+        <div id="Plugins" class="tabcontent">
+          <h3>Plugins</h3>
+          <p>read plugins folder</p> 
+        </div>
+
+      </div>
+      <script src="./js/overview.js"></script>
+    </body>
+
+</html>

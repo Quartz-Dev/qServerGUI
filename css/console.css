@@ -2,11 +2,10 @@
     text-align: left;
     border: 4px solid #ff0000;
     padding: 10px;
-    float: right;
     color: rgb(255, 255, 255);
     background: rgb(0, 0, 0);
-    height: 400px;
-    width: 70%;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     position: relative;
 }
