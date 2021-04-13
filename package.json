@@ -21,7 +21,8 @@
     "bootstrap": "^5.0.0-beta3",
     "electron-squirrel-startup": "^1.0.0",
     "electron-tabs": "^0.15.0",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "jquery-ui": "^1.12.1"
   },
   "config": {
     "forge": {

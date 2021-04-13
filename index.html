@@ -8,6 +8,7 @@
     </head>
     <body class="body container">
       <div class="header tab">
+        <button id="status-icon"class="tablinks status-off"></button>
         <button class="tablinks" onclick="openTab(event, 'Overview')">Overview</button>
         <button class="tablinks" onclick="openTab(event, 'Console')">Console</button>
         <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
@@ -30,9 +31,11 @@
         </div>
 
         <div id="Console" class="tabcontent">
-          <div id="console">
-              <div id="console-output" class="flex-fill">
-                  <div id="console-output-line"></div>
+          <div id="console-container">
+              <div id="console-output">
+                  <div id="output-text">
+                    <div id="console-output-line">Server offline... </div>
+                  </div>
                   <script src="./js/mcserver.js"></script>
               </div>
               <div id="console-bottom">
@@ -43,8 +46,19 @@
         </div>
         
         <div id="Settings" class="tabcontent">
-          <h3>Settings</h3>
-          <p>server jar location, min-max ram java, custom arguments, java version, launch button</p>
+          <h3>Launch Options</h3>
+          <div>
+            <p>Choose Server Jar</p>
+            <input id="input-jar-path" type="file" accept=".jar" onchange="updateJarLocation()">
+            <p>Java: java</p>
+            <p>Min Ram (MB)</p>
+            <input id="range-min-ram" type="range" min="0" max="1280" step="128" oninput="updateMinAmount()" />
+            <input id="amount-min-ram" type="number" value="100" min="0" max="1280" step="128" oninput="updateMinSlider()" />
+            <p>Max Ram (MB)</p>
+            <input id="range-max-ram" type="range" min="0" max="1280" step="128" oninput="updateMaxAmount()" />
+            <input id="amount-max-ram" type="number" value="100" min="0" max="1280" step="128" oninput="updateMaxSlider()" />
+            <p></p>
+            <button onclick="setRamRange()">Save Launch Options</button>
         </div>
     
         <div id="Scheduler" class="tabcontent">
@@ -66,9 +80,9 @@
           <h3>Plugins</h3>
           <p>read plugins folder</p> 
         </div>
-
+      
       </div>
-      <script src="./js/overview.js"></script>
+      
     </body>
 
 </html>

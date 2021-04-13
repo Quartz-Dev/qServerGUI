@@ -34,38 +34,42 @@
   height: 100%;
   position: fixed;
   left: 0;
-  fill: 1;
   right: 0;
   background-image: url('img/mc-light-stone.png');
 }
 
-#console{
-  display: block;
+#console-container{
+  display: flex;
   flex-direction: column;
   left: 0;
   right: 0;
-  height: 100%;
+  height: 97vh;
   width: 100%;
-  position: fixed;
-  background: url('img/mc-dark-stone.png');
+  position: relative;
   text-align: left;
 }
 
 #console-output {
+  flex-grow: 1;
+  min-height: 0;
+  flex-shrink: 1;
+  align-self: stretch;
   color: white;
-  top: 10px;
-  height: 90%;
   width: 100%;
+  height: 100%;
+  position: absolute;
   overflow-y: auto;
+  background-image: url('img/mc-dark-stone.png');
 }
-
 #console-bottom{
-  display: flex;
-  flex-direction: row;
+  align-self: flex-start;
   bottom: 0;
-  position: relative;
-  height: 6%;
+  flex-grow: 0;
+  display: flex;
+  height: 40px;
   width: 100%;
+  position: fixed;
+  flex-direction: row;
 }
 
 #console-input {
@@ -78,31 +82,52 @@
   flex-grow: 1;
 }
 
+#status-icon{
+  height: 43px;
+  width: 45px;
+}
+
+#output-text{
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 40px;
+}
+
+.status-off{
+  background-image: url('img/status-off-slime.png');
+  object-fit: fill;
+}
+
+.status-on{
+  background-image: url('img/status-on-slime.png');
+  object-fit: fill;
+}
 
 .page {
-  flex:2;
+  flex:1;
   margin: 0;
   position: relative;
 }
 
 body{
   margin: 0;
+  height: 100%;
 }
 
 .header{
   flex:1;
+  justify-content: flex-start;
   position: relative;
-  top: 0;
   width: auto;
 }
 .container{
   display: flex;
   flex-direction: column;
-  align-items: stretch;
 }
 
 .body{
   background-image: url('img/mc-dark-stone.png');
 }
+
 
   
