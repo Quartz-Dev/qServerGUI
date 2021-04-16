@@ -31,7 +31,7 @@
   display: none;
   border: 1px solid #ccc;
   border-top: none;
-  height: 100%;
+  height: calc(100% - 45px);
   position: fixed;
   left: 0;
   right: 0;
@@ -43,24 +43,29 @@
   flex-direction: column;
   left: 0;
   right: 0;
-  height: 97vh;
+  height: 100%;
   width: 100%;
-  position: relative;
   text-align: left;
 }
 
+.line:hover{
+  background: rgba(255, 255, 255, 0.452)
+}
+
 #console-output {
-  flex-grow: 1;
-  min-height: 0;
-  flex-shrink: 1;
-  align-self: stretch;
-  color: white;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow-y: auto;
+  display: flex;
+  height: calc(100% - 40px);
   background-image: url('img/mc-dark-stone.png');
 }
+
+#output-text{
+  padding: 10px;
+  width: 100%;
+  height: calc(100% - 20px);
+  overflow-y: auto;
+  color: white;
+}
+
 #console-bottom{
   align-self: flex-start;
   bottom: 0;
@@ -87,11 +92,6 @@
   width: 45px;
 }
 
-#output-text{
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-bottom: 40px;
-}
 
 .status-off{
   background-image: url('img/status-off-slime.png');

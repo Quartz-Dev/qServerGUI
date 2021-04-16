@@ -34,7 +34,9 @@
           <div id="console-container">
               <div id="console-output">
                   <div id="output-text">
-                    <div id="console-output-line">Server offline... </div>
+                    <p id="console-output-line">Server offline...
+                    
+                    </p>
                   </div>
                   <script src="./js/mcserver.js"></script>
               </div>
@@ -48,17 +50,26 @@
         <div id="Settings" class="tabcontent">
           <h3>Launch Options</h3>
           <div>
-            <p>Choose Server Jar</p>
-            <input id="input-jar-path" type="file" accept=".jar" onchange="updateJarLocation()">
-            <p>Java: java</p>
-            <p>Min Ram (MB)</p>
-            <input id="range-min-ram" type="range" min="0" max="1280" step="128" oninput="updateMinAmount()" />
-            <input id="amount-min-ram" type="number" value="100" min="0" max="1280" step="128" oninput="updateMinSlider()" />
-            <p>Max Ram (MB)</p>
-            <input id="range-max-ram" type="range" min="0" max="1280" step="128" oninput="updateMaxAmount()" />
-            <input id="amount-max-ram" type="number" value="100" min="0" max="1280" step="128" oninput="updateMaxSlider()" />
-            <p></p>
-            <button onclick="setRamRange()">Save Launch Options</button>
+            <label>Jar File:</label>
+            <input id="input-jar-path" type="file" accept=".jar" onchange="updateJarPath()">
+            <br>
+            <label>Java Version:</label>
+            <select>
+              <option value='java'>System default</option>
+              <option value='jre1.8.0_281'>jre1.8.0_281</option>
+            </select>
+            <br>
+            <label>Min Ram (MB)</label>
+            <input id="range-min-ram" type="range" min="0" step="128" onchange="updateMinAmount()" />
+            <input id="amount-min-ram" type="number" min="0" step="128" onchange="updateMinSlider()" />
+            <br>
+            <label>Max Ram (MB)</label>
+            <input id="range-max-ram" type="range" min="0" step="128" onchange="updateMaxAmount()" />
+            <input id="amount-max-ram" type="number" min="0" step="128" onchange="updateMaxSlider()" />
+            <br>
+            <label></label>
+            <button onclick="saveLaunchOptions()">Save</button>
+            <button onclick="startServer(); openTab(event, 'Console')">Launch Server</button>
         </div>
     
         <div id="Scheduler" class="tabcontent">
@@ -82,7 +93,7 @@
         </div>
       
       </div>
-      
+      <script src="./js/settings.js"></script>
     </body>
 
 </html>

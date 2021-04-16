@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.0.0-beta3",
+    "electron-json-config": "^1.5.3",
+    "electron-settings": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0",
     "electron-tabs": "^0.15.0",
     "jquery": "^3.6.0",

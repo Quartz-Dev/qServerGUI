@@ -1,26 +1,28 @@
 var child = require('child_process')
 window.$ = window.jquery = require('jquery')
+const config = require('electron-json-config');
 
-var java_path = 'java'
-var server_path = null;
+var java_path = null;
 var jar_name = null;
+var server_dir = null;
 var java_min = null;
-var java_max = null;
-
-var server_jar = null
+var java_max = null; 
 
 function startServer(){
+    console.log('GUI Iussuing Start Server...')
 
-    if(!server_path || !jar_name || !java_min || !java_max){
-        alert("Update Settings")
+    var check = checkRequirements()
+
+    if(check){
+        alert(check)
+        console.log("Error: " + check)
         return
     }
 
-    console.log('GUI Iussuing Start Server...')
     server_jar = child.spawn(
         java_path,
-        [java_min, java_max, '-XX:+UseG1GC', '-jar', jar_name, 'nogui'] ,
-        { cwd: server_path }
+        ["-Xms" + java_min, "-Xmx" + java_max, '-XX:+UseG1GC', '-jar', jar_name, 'nogui'] ,
+        { cwd: server_dir }
         )
     
     changeStatusOn()
@@ -41,6 +43,35 @@ function startServer(){
         changeStatusOff()
     })
 }
+
+function checkRequirements(){
+    var alert_prefix = 'Update the following launch options: \n'
+    var alert_msg = ""
+
+    java_path = config.get('java-path')
+    jar_name = config.get('jar-name')
+    server_dir = config.get('server-dir')
+    java_min = config.get('java-min-ram')
+    java_max = config.get('java-max-ram')
+
+    if(!java)
+        alert_msg += '- Java Version\n'
+    if(!server_dir)
+        alert_msg += '- Server Directory\n'
+    if(!jar_name)
+        alert_msg += '- Server Jar\n'
+    if(jar_name)
+        if(!jar_name.endsWith('.jar'))
+            alert_msg += '- Server needs to be a jar file\n'
+    if(!java_min)
+        alert_msg += '- Java Min Ram\n'
+    if(!java_max)
+            alert_msg += '- Java Max Ram\n'
+    if(alert_msg !== ""){
+        return alert_prefix + alert_msg
+    }
+}
+
 
 function changeStatusOff(){
     $('#status-icon').removeClass('status-on')
@@ -82,69 +113,14 @@ function sendServerCommand(cmd){
 }
 
 function updateServerConsole(line){
-    var newLine = document.createElement("p")
-    newLine.innerHTML = line
-    document.getElementById('console-output-line').appendChild(newLine)
-    $('#console-output').animate({scrollTop: $('#console-output').get(0).scrollHeight}, 0)
-}
-
-function setRamRange(){
-    var total_memory_mb = process.getSystemMemoryInfo().total/1000
-    console.log("Total Memory: " + total_memory_mb + "mb")
-    $('#range-min-ram').prop("max", total_memory_mb);
-    $('#range-max-ram').prop("max", total_memory_mb);
-    updateMinAmount()
-    updateMaxAmount()
-    printLaunchOptions()
-}
-
-function updateMinAmount(){
-    var slider = $('#range-min-ram').val()
-    $('#amount-min-ram').val(slider)
-    java_min = "-Xms" + slider + "M"
-}
-
-function updateMinSlider(){
-    var amount = $('#amount-min-ram').val()
-    $('#range-min-ram').val(amount)
-    java_min = "-Xms" + amount + "M"
-}
-
-function updateMaxAmount(){
-    var slider = $('#range-max-ram').val()
-    $('#amount-max-ram').val(slider)
-    java_max = "-Xmx" + slider + "M"
-}
-
-function updateMaxSlider(){
-    var amount = $('#amount-max-ram').val()
-    $('#range-max-ram').val(amount)
-    java_max = "-Xmx" + amount + "M"
-}
-
-function printLaunchOptions(){
-    console.log("Server Path: \'" + server_path + "\'")
-    console.log("Jar File Name: \'" + jar_name + "\'")
-    console.log("Java : \'" + java_path + "\'")
-    console.log("RAM Min: \'" + java_min + "\'")
-    console.log("RAM Max: \'" + java_max + "\'")
-}
-
-function updateJarLocation(){
-    if(document.getElementById('input-jar-path').files){
-        var input_file_name = document.getElementById('input-jar-path').files[0].name
-        var input_file_path = document.getElementById('input-jar-path').files[0].path.replace(input_file_name, "")
-        server_path = input_file_path
-        jar_name = input_file_name
-    }
+    var newLine = "<p class=\"line\">" + line + "<p>"
+    $('#output-text').append(newLine)
+    $('#output-text').animate({scrollTop: $('#output-text').get(0).scrollHeight}, 0)
 }
 
 function openTab(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks
-    if(tabName.toLowerCase() == 'settings'){
-        setRamRange()
-    }
   
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
