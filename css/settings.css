@@ -1,0 +1,18 @@
+#settings-container{
+    display: grid;
+    padding: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2em;
+    grid-auto-rows: minmax(10em, auto);
+    
+}
+
+#settings-container > div{
+    height: 100%;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+#backup-settings {
+    grid-column: 1/3;
+}
