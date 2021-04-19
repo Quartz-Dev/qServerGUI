@@ -1,12 +1,13 @@
 var child = require('child_process')
 window.$ = window.jquery = require('jquery')
-const config = require('electron-json-config');
+var config = require('electron-json-config');
 
-var java_path = null;
-var jar_name = null;
-var server_dir = null;
-var java_min = null;
-var java_max = null; 
+var java_path = null
+var jar_name = null
+var server_dir = null
+var java_min = null
+var java_max = null
+var restarting = false
 
 function startServer(){
     console.log('GUI Iussuing Start Server...')
@@ -38,10 +39,23 @@ function startServer(){
         updateServerConsole(serverOutput)
     })
 
+    
+
     server_jar.on('close', function(){
         console.log('Server Closed')
         changeStatusOff()
+        if(restarting){
+            restarting = false
+            startServer()
+        }
     })
+}
+
+function restartServer(){
+    
+    console.log('GUI Iussuing Restart Server...')
+    restarting = true
+    stopServer()
 }
 
 function checkRequirements(){
@@ -120,13 +134,13 @@ function sendServerCommand(cmd){
 
 function updateServerConsole(line){
     var newLine = "<p class=\"line\">" + line + "</p>"
-    test(line)
+    updatePlayerList(line)
     $('.output-text').append(newLine)
     $('.output-text').animate({scrollTop: $('.output-text').get(0).scrollHeight}, 0)
     //[13:13:41] [Query Listener #1/INFO]: Query running on 0.0.0.0:25565
 }
 
-function test(line){
+function updatePlayerList(line){
     if(!line) return
     var time = line.substring(line.indexOf("["), line.indexOf("]")+1)
     line = line.replace(time, "")
@@ -134,10 +148,10 @@ function test(line){
     line = line.replace(msgtype, "")
     splitLine = line.split(" ")
     if(msgtype.includes("User Authenticator") && splitLine.length == 8){
+        console.log("poop")
         var username = splitLine[5]
         var uuid = splitLine[7]
         if($('.player-' + username).length) {
-            console.log("smile")
             return
         }
         var newLine = "<p class=\"player-" + username + "\"><img style=\"vertical-align:middle\" src=\"https://crafatar.com/avatars/" + uuid + "?size=25&default=MHF_Steve&overlay\">" +

@@ -1,0 +1,10 @@
+#overview-server-cmds{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+#overview-server-cmds > button{
+    margin-left: 10px;
+    margin-right: 10px;
+}

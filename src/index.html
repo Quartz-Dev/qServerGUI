@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/overview.css" />
         <link rel="stylesheet" href="css/console.css" />
         <link rel="stylesheet" href="css/performance.css" />
+        <link rel="stylesheet" href="css/control.css" />
     </head>
     <body class="body container">
 
@@ -50,10 +51,9 @@
                     </div>
                     <div id="overview-server-cmds">
                         <h3 class="section-title">Server Control</h3>
-                        <button type="button" onclick="startServer()">Start</button>
-                        <button type="button" onclick="">Restart</button>
-                        <br>
-                        <button type="button" onclick="stopServer()">Stop</button>
+                        <button type="button" onclick="startServer(); startUptimeTimer();">Start</button>
+                        <button type="button" onclick="stopServer(); stopUptimeTimer();">Stop</button>
+                        <button type="button" onclick="restartServer();">Restart</button>
                         <button type="button" onclick="reloadServer()">Reload</button>
                     </div>
                     <div id="overview-performance">
@@ -71,10 +71,13 @@
                             </div>
                         </div>
                         <div class="server-runetime">
-                            server uptime
+                            <label id="server-uptime">Server Uptime: [00:00:00:00]</label>
                         </div>
                         <div class="disk-space">
-                            disk space
+                            <div>
+                                <label id="disk-space-percent">Disk Space: 0% </label>
+                                <progress id="disk-space-progress" max="100"></progress>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,7 +124,7 @@
                       <br>
                       <label></label>
                       <button onclick="saveLaunchOptions()">Save</button>
-                      <button onclick="startServer(); openTab(event, 'Console')">Launch Server</button>
+                      <button onclick="startServer(); openTab(event, 'Overview')">Launch Server</button>
                     </div>
 
                     <div id="console-settings">
