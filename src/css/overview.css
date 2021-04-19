@@ -1,0 +1,57 @@
+.overview-container{
+    display: grid;
+    padding: 10px;
+    height: calc(100% - 45px);
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 1fr 150px;
+    align-items: stretch;
+    grid-gap: 2em;
+}
+
+.overview-container > div{
+    height: 100%;
+    text-align: center;
+    border: 2px solid gray;
+    overflow: hidden;
+    border-radius: 5px;
+    align-items: flex-start;
+}
+
+.playerlist {
+    display: grid;
+    grid-gap: 1em;
+    height: calc(100% - 42px);
+    overflow-y: auto;
+}
+
+.section-title {
+    height: 35px;
+    padding-top: 5px;
+    margin: 0px;
+    text-align: middle;
+}
+
+.playerlist > p{
+    margin: 0;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#overview-console {
+    grid-column: 2/5;
+}
+
+#overview-playerlist {
+    text-align: center;
+    top: 0;
+    bottom: 0;
+}
+
+#overview-performance {
+    grid-column: 2/5;
+}
+
+#overview-options {
+    grid-column: 1/5;
+}

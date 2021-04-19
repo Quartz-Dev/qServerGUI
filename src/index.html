@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>qServerGUI [WIP]</title>
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/settings.css" />
+        <link rel="stylesheet" href="css/overview.css" />
+        <link rel="stylesheet" href="css/console.css" />
+        <link rel="stylesheet" href="css/performance.css" />
+    </head>
+    <body class="body container">
+
+        <div class="header">
+            <button id="status-icon"class="tablinks status-off"></button>
+            <button class="tablinks" onclick="openTab(event, 'Overview')">Overview</button>
+            <button class="tablinks" onclick="openTab(event, 'Console')">Console</button>
+            <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
+            <button class="tablinks" onclick="openTab(event, 'Scheduler')">Scheduler</button>
+            <button class="tablinks" onclick="openTab(event, 'Backups')">Backups</button>
+            <button class="tablinks" onclick="openTab(event, 'Players')">Players</button>
+            <button class="tablinks" onclick="openTab(event, 'Plugins')">Plugins</button>
+        </div>
+
+        <div class="page-container">
+            <div id="Overview" class="tabcontent" style="display:block">
+                <div class="overview-container">
+                    <div id="overview-playerlist">
+                        <h3 class="section-title">Online Players</h3>
+                        <div class="playerlist">
+                            <!-- <p><img style="vertical-align:middle" src="https://crafatar.com/avatars/f127ad1e-d97c-454e-96aa-798b422f8dee?size=25&default=MHF_Steve&overlay">  QarthO</p> -->
+                        </div>
+                    </div>
+                    <div id="overview-console">
+                      <div class="console-container">
+                        <div class="console-output">
+                            <div class="output-text">
+                                <p class="console-output-line">
+                                    Server offline...
+                                </p>
+                            </div>
+                            <script src="./js/mcserver.js"></script>
+                        </div>
+                        <div class="console-bottom">
+                            <input class="console-input" type="text" placeholder="Send server command">
+                            <button class="console-submit-button" type="button" onclick="submitConsoleInput()">Send</button>
+                        </div>
+                    </div>
+                    </div>
+                    <div id="overview-server-cmds">
+                        <h3 class="section-title">Server Control</h3>
+                        <button type="button" onclick="startServer()">Start</button>
+                        <button type="button" onclick="">Restart</button>
+                        <br>
+                        <button type="button" onclick="stopServer()">Stop</button>
+                        <button type="button" onclick="reloadServer()">Reload</button>
+                    </div>
+                    <div id="overview-performance">
+                        <h3 class="section-title performance-title">Performance Monitor</h3>
+                        <div class="cpu-usage">
+                            <div>
+                                <label id="cpu-usage-percent">CPU Usage: 0% </label>
+                                <progress id="cpu-usage-progress" max="100"></progress>
+                            </div>
+                        </div>
+                        <div class="ram-usage">
+                            <div>
+                                <label id="ram-usage-percent">RAM Usage: 0% </label>
+                                <progress id="ram-usage-progress" max="100"></progress>
+                            </div>
+                        </div>
+                        <div class="server-runetime">
+                            server uptime
+                        </div>
+                        <div class="disk-space">
+                            disk space
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Console" class="tabcontent">
+                <div class="console-container">
+                    <div class="console-output">
+                        <div class="output-text">
+                            <p class="console-output-line">
+                                Server offline...
+                            </p>
+                        </div>
+                        <script src="./js/mcserver.js"></script>
+                    </div>
+                    <div class="console-bottom">
+                        <input class="console-input" type="text" placeholder="Send server command">
+                        <button class="console-submit-button" type="button" onclick="submitConsoleInput()">Send</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="Settings" class="tabcontent">
+                <div id="settings-container">
+
+                    <div id="launch-options">
+                      <h3>Launch Options</h3>
+                      <label>Jar File:</label>
+                      <input id="input-jar-path" type="file" accept=".jar" onchange="updateJarPath()">
+                      <br>
+                      <label>Java Version:</label>
+                      <select>
+                          <option value='java'>System default</option>
+                          <option value='jre1.8.0_281'>jre1.8.0_281</option>
+                      </select>
+                      <br>
+                      <label>Min Ram (MB)</label>
+                      <input id="range-min-ram" type="range" min="0" step="128" onchange="updateMinAmount()" />
+                      <input id="amount-min-ram" type="number" min="0" step="128" onchange="updateMinSlider()" />
+                      <br>
+                      <label>Max Ram (MB)</label>
+                      <input id="range-max-ram" type="range" min="0" step="128" onchange="updateMaxAmount()" />
+                      <input id="amount-max-ram" type="number" min="0" step="128" onchange="updateMaxSlider()" />
+                      <br>
+                      <label></label>
+                      <button onclick="saveLaunchOptions()">Save</button>
+                      <button onclick="startServer(); openTab(event, 'Console')">Launch Server</button>
+                    </div>
+
+                    <div id="console-settings">
+                        <h3>Console Settings</h3>
+                        <label>Text Size</label>
+                        <input id="console-text-size" type="range" min="0" max="100" step="5" onchange="" />
+                        <br>
+                        <label>Auto Scroll</label>
+                        <input id="console-auto-scroll" type="checkbox" onchange=""/>
+                    </div>
+
+                    <div id="backup-settings">
+                      <h3>Backup Settings</h3>
+                      <label>Location</label>
+                      <input id="console-text-size" type="range" min="0" max="100" step="5" onchange="" />
+                      <br>
+                      <label>Auto Scroll</label>
+                      <input id="console-auto-scroll" type="checkbox" onchange=""/>
+                  </div>
+
+                </div>
+                
+            </div>
+
+            <div id="Scheduler" class="tabcontent">
+                <h3>Scheduler</h3>
+                <p>run tasks like backup/broadcasts/custom</p>
+            </div>
+            
+            <div id="Backups" class="tabcontent">
+                <h3>Backups</h3>
+                <p>backups w/ restore feature</p>
+            </div>
+        
+            <div id="Players" class="tabcontent">
+                <h3>Players</h3>
+                <p>get custom info from player</p>
+            </div>
+        
+            <div id="Plugins" class="tabcontent">
+                <h3>Plugins</h3>
+                <p>read plugins folder</p> 
+            </div>
+        </div>
+
+        <script src="./js/settings.js"></script>
+        <script src="./js/performance.js"></script>
+    </body>
+
+</html>

@@ -89,7 +89,13 @@ function stopServer(){
     }
 }
 
-$(document).on("keypress", "#console-input", function(e){
+function reloadServer(){
+    if(server_jar){
+        sendServerCommand("reload")
+    }
+}
+
+$(document).on("keypress", ".console-input", function(e){
     if(e.key == 'Enter'){
         if(server_jar){
             sendServerCommand($(this).val())
@@ -113,10 +119,46 @@ function sendServerCommand(cmd){
 }
 
 function updateServerConsole(line){
-    var newLine = "<p class=\"line\">" + line + "<p>"
-    $('#output-text').append(newLine)
-    $('#output-text').animate({scrollTop: $('#output-text').get(0).scrollHeight}, 0)
+    var newLine = "<p class=\"line\">" + line + "</p>"
+    test(line)
+    $('.output-text').append(newLine)
+    $('.output-text').animate({scrollTop: $('.output-text').get(0).scrollHeight}, 0)
+    //[13:13:41] [Query Listener #1/INFO]: Query running on 0.0.0.0:25565
 }
+
+function test(line){
+    if(!line) return
+    var time = line.substring(line.indexOf("["), line.indexOf("]")+1)
+    line = line.replace(time, "")
+    var msgtype = line.substring(line.indexOf("["), line.indexOf("]")+1)
+    line = line.replace(msgtype, "")
+    splitLine = line.split(" ")
+    if(msgtype.includes("User Authenticator") && splitLine.length == 8){
+        var username = splitLine[5]
+        var uuid = splitLine[7]
+        if($('.player-' + username).length) {
+            console.log("smile")
+            return
+        }
+        var newLine = "<p class=\"player-" + username + "\"><img style=\"vertical-align:middle\" src=\"https://crafatar.com/avatars/" + uuid + "?size=25&default=MHF_Steve&overlay\">" +
+        "  " + username + "</p>"
+        $('.playerlist').append(newLine)
+        console.log(username + "[" + uuid + "] joined the server")
+    }
+
+    if(msgtype.includes("[Server thread/INFO]")){
+        if(line.includes(" lost connection")){
+            username = splitLine[2]
+            console.log(username + " left the server")
+            $('.player-' + username).remove()
+        }
+    }
+
+
+
+
+}
+
 
 function openTab(evt, tabName) {
     // Declare all variables

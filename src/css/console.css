@@ -1,0 +1,67 @@
+.console-container{
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+}
+
+.console-output {
+    display: flex;
+    height: calc(100% - 40px);
+    background-image: url('img/mc-dark-stone.png');
+}
+
+.console-bottom{  
+    display: flex;
+    height: 40px;
+    width: 100%;
+    flex-direction: row;
+}
+
+.line:hover{
+    background: rgba(255, 255, 255, 0.452)
+}
+
+.output-text{
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    color: white;
+}
+  
+.console-input {
+    flex:1;
+    flex-grow: 9;
+    overflow: auto;
+    border: 0px;
+    border-radius: 0px;
+}
+
+.console-submit-button {
+  flex:2;
+  flex-grow: 1;
+  border: 0px;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+.console-submit-button:hover {
+    background-color: #ddd;
+}
+
+.console-submit-button:focus {
+    outline: none;
+    border-top: 2px solid gray;
+    border-left: 2px solid gray;
+}
+
+.console-input:focus {
+    outline: none;
+    border-top: 2px solid gray;
+    border-right: 2px solid gray;
+}

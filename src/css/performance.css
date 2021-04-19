@@ -1,0 +1,22 @@
+#overview-performance{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#overview-performance > div{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr
+}
+
+.performance-title {
+    height: 30px;
+    grid-column: 1/3;
+}
+
+.cpu-usage{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+

@@ -1,31 +1,22 @@
 {
-  "name": "test-app",
+  "name": "qservergui",
+  "productName": "qservergui",
   "version": "1.0.0",
-  "author": "QarthO",
-  "description": "test app",
-  "main": "main.js",
+  "description": "My Electron application description",
+  "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
-  "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.54",
-    "@electron-forge/maker-deb": "^6.0.0-beta.54",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
-    "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "electron": "12.0.2"
+  "keywords": [],
+  "author": {
+    "name": "QarthO",
+    "email": "qartho@gmail.com"
   },
-  "dependencies": {
-    "bootstrap": "^5.0.0-beta3",
-    "electron-json-config": "^1.5.3",
-    "electron-settings": "^4.0.2",
-    "electron-squirrel-startup": "^1.0.0",
-    "electron-tabs": "^0.15.0",
-    "jquery": "^3.6.0",
-    "jquery-ui": "^1.12.1"
-  },
+  "license": "MIT",
   "config": {
     "forge": {
       "packagerConfig": {},
@@ -33,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "test_app"
+            "name": "qservergui"
           }
         },
         {
@@ -52,5 +43,19 @@
         }
       ]
     }
+  },
+  "dependencies": {
+    "electron-json-config": "^1.5.3",
+    "electron-squirrel-startup": "^1.0.0",
+    "jquery": "^3.6.0",
+    "node-os-utils": "^1.3.5"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "electron": "12.0.4"
   }
 }
