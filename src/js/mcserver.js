@@ -8,6 +8,7 @@ var server_dir = null
 var java_min = null
 var java_max = null
 var restarting = false
+var server_jar = null
 
 function startServer(){
     console.log('GUI Iussuing Start Server...')
@@ -120,8 +121,8 @@ $(document).on("keypress", ".console-input", function(e){
 
 function submitConsoleInput(){
     if(server_jar){
-        sendServerCommand($('#console-input').val())
-        $('#console-input').val("")
+        sendServerCommand($('.console-input').val())
+        $('.console-input').val("")
     }
 }
 
@@ -133,11 +134,19 @@ function sendServerCommand(cmd){
 }
 
 function updateServerConsole(line){
-    var newLine = "<p class=\"line\">" + line + "</p>"
-    updatePlayerList(line)
-    $('.output-text').append(newLine)
-    $('.output-text').animate({scrollTop: $('.output-text').get(0).scrollHeight}, 0)
-    //[13:13:41] [Query Listener #1/INFO]: Query running on 0.0.0.0:25565
+    // var newLine = "<p class=\"line\">" + line + "</p>"
+
+    line.split('\n').forEach((line2) => {
+        var newLine = document.createElement('p');
+        newLine.classList.add('line');
+        newLine.innerText = line2;
+
+        $('.output-text').append(newLine)
+        $('.output-text').animate({scrollTop: $('.output-text').get(0).scrollHeight}, 0)
+
+        updatePlayerList(line)
+        //[13:13:41] [Query Listener #1/INFO]: Query running on 0.0.0.0:25565
+    });
 }
 
 function updatePlayerList(line){
@@ -148,12 +157,12 @@ function updatePlayerList(line){
     line = line.replace(msgtype, "")
     splitLine = line.split(" ")
     if(msgtype.includes("User Authenticator") && splitLine.length == 8){
-        console.log("poop")
         var username = splitLine[5]
         var uuid = splitLine[7]
         if($('.player-' + username).length) {
             return
         }
+        
         var newLine = "<p class=\"player-" + username + "\"><img style=\"vertical-align:middle\" src=\"https://crafatar.com/avatars/" + uuid + "?size=25&default=MHF_Steve&overlay\">" +
         "  " + username + "</p>"
         $('.playerlist').append(newLine)
@@ -167,10 +176,6 @@ function updatePlayerList(line){
             $('.player-' + username).remove()
         }
     }
-
-
-
-
 }
 
 
