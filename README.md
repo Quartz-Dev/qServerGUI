@@ -11,10 +11,10 @@ Menu Tabs:
 - Overview (console, playerlist, simple server commands, server resource monitor)
 - Console (console entire window)
 - Settings (server jar location, min-max ram java, custom arguments, java version, launch button)
-- scheduler (run tasks like backup/broadcasts/custom)
-- backups w/ restore feature
-- players (get custom info from player)
-- plugins (read plugins folder)
+- [WIP] scheduler (run tasks like backup/broadcasts/custom)
+- [WIP] backups w/ restore feature
+- [WIP] players (get custom info from player)
+- [WIP] plugins (read plugins folder)
 
 TO DOs App Feature list (not minecraft specific)
 - option to close to system tray
