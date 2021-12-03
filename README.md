@@ -10,7 +10,7 @@ Menu Tabs:
 - players (get custom info from player)
 - plugins (read plugins folder)
 
-App Feature list (not minecraft specific)
+TO DOs App Feature list (not minecraft specific)
 - option to close to system tray
 - app icon that updates  (green/red) running/stopped
 - when closing app, if server is running, asks user to stop server before being able to close, (if force closed, auto stops server)
