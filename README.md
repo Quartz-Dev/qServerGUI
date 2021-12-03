@@ -1,6 +1,12 @@
 # qServerGUI
 A Minecraft Server GUI
 
+![image](https://user-images.githubusercontent.com/10179096/144616292-9bbb419e-a0cc-41fe-afa3-0cb1665a431a.png)
+![image](https://user-images.githubusercontent.com/10179096/144616314-bcc5c42c-9a41-4f98-a763-b5d7dfab6e27.png)
+![image](https://user-images.githubusercontent.com/10179096/144616336-65cc4fa5-afc4-4da9-aa76-d4ee0f59424c.png)
+
+
+
 Menu Tabs:
 - Overview (console, playerlist, simple server commands, server resource monitor)
 - Console (console entire window)
